@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy Result</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>💪 FitBuddy</h1>
+
+    {% if error %}
+        <div class="error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if message %}
+        <div class="success">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    {% if username %}
+
+    <div class="user-info">
+
+        <h2>👤 User Information</h2>
+
+        <p><strong>Name:</strong> {{ username }}</p>
+        <p><strong>User ID:</strong> {{ user_id }}</p>
+        <p><strong>Age:</strong> {{ age }}</p>
+        <p><strong>Weight:</strong> {{ weight }} kg</p>
+        <p><strong>Goal:</strong> {{ goal }}</p>
+        <p><strong>Intensity:</strong> {{ intensity }}</p>
+
+    </div>
+
+    {% endif %}
+
+    {% if workout_plan %}
+
+    <div class="result-section">
+
+        <h2>🏋️ 7-Day Workout Plan</h2>
+
+        <pre>{{ workout_plan }}</pre>
+
+    </div>
+
+    {% endif %}
+
+    {% if nutrition_tip %}
+
+    <div class="result-section">
+
+        <h2>🥗 Nutrition / Recovery Tip</h2>
+
+        <div class="tip">
+            {{ nutrition_tip }}
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    {% if user_id %}
+
+    <div class="result-section">
+
+        <h2>🔄 Update Your Plan</h2>
+
+        <form method="post" action="/submit-feedback">
+
+            <input
+                type="hidden"
+                name="user_id"
+                value="{{ user_id }}"
+            >
+
+            <textarea
+                name="feedback"
+                placeholder="Example: Add more cardio or include more rest days..."
+                required
+            ></textarea>
+
+            <button type="submit">
+                Update Plan
+            </button>
+
+        </form>
+
+    </div>
+
+    {% endif %}
+
+    <a href="/" class="back-button">
+        ← Create New Plan
+    </a>
+
+</div>
+
+</body>
+</html>

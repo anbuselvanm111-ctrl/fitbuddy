@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitBuddy - All Users</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container wide">
+
+    <h1>💪 FitBuddy</h1>
+
+    <p class="subtitle">
+        Admin Dashboard
+    </p>
+
+    <div class="admin-header">
+        <h2>👥 All Users</h2>
+        <a href="/" class="back-button">← Home</a>
+    </div>
+
+    {% if users %}
+
+        {% for user in users %}
+
+        <div class="user-card">
+
+            <h3>{{ user.username }}</h3>
+
+            <p><strong>User ID:</strong> {{ user.user_id }}</p>
+            <p><strong>Age:</strong> {{ user.age }}</p>
+            <p><strong>Weight:</strong> {{ user.weight }} kg</p>
+            <p><strong>Goal:</strong> {{ user.goal }}</p>
+            <p><strong>Intensity:</strong> {{ user.intensity }}</p>
+
+            <h4>🏋️ Original Workout Plan</h4>
+
+            <pre>{{ user.original_plan }}</pre>
+
+            {% if user.updated_plan %}
+
+                <h4>🔄 Updated Workout Plan</h4>
+
+                <pre>{{ user.updated_plan }}</pre>
+
+            {% else %}
+
+                <p class="no-update">
+                    No updated plan yet.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="empty">
+            <p>No users found.</p>
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
